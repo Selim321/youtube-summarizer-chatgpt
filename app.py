@@ -3,6 +3,7 @@ import requests
 from urllib.parse import urlparse, parse_qs
 from youtube_transcript_api import YouTubeTranscriptApi
 import unicodedata
+import creds 
 
 def summarize_video(url):
   
@@ -32,10 +33,15 @@ def summarize_video(url):
   my_string = unicodedata.normalize('NFKD', video_transcript)
   print("Text normalized")
 
+  #text summarization with openai turbo 3.5
+  import openai
+
+  my_api_key = creds.openai_key
+
 
   
 
-  
+
 # Define the Streamlit app
 st.title("YouTube Summarizer")
 
@@ -56,17 +62,3 @@ if submit_button:
     # Display the summary to the user
     st.subheader("Summary")
     st.write(summary)
-
-    # Convert text summary into audio
-    tts = gTTS(summary)
-    print("converting text to audio")
-    tts.save('Summary.mp3')
-
-    # Download audio transcript 
-    with open('Summary.mp3', 'rb') as f:
-        st.download_button('Download mp3', f, file_name='Summary.mp3')
-
-
-
-
-    
