@@ -38,6 +38,15 @@ def summarize_video(url):
 
   my_api_key = creds.openai_key
 
+  completion = openai.ChatCompletion.create(
+     model="gpt-3.5-turbo",
+     messages = {"role":"user", "content": "can you summarize me this text? : {my_string} "}
+  )
+  
+  summary = completion.choices[0].message
+
+  return summary
+
 
   
 
