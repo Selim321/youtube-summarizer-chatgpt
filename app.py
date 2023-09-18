@@ -40,7 +40,7 @@ def summarize_video(url):
 
   completion = openai.ChatCompletion.create(
      model="gpt-3.5-turbo",
-     messages = {"role":"user", "content": "can you summarize me this text? : {my_string} "}
+     messages = {"role":"user", "content": "can you summarize me this text and add punctuation when necessary? : {my_string} "}
   )
   
   summary = completion.choices[0].message
