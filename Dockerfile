@@ -13,8 +13,5 @@ RUN pip install -r requirements.txt
 # Copy the rest of your application code into the container
 COPY . .
 
-# Expose the port your Streamlit app will run on
-EXPOSE 8501
-
 # Command to run your Streamlit app
-CMD ["streamlit", "run", "your_app.py"]
+CMD ["streamlit", "run", "app.py", "--server.port=8080","--server.address=0.0.0.0"]
