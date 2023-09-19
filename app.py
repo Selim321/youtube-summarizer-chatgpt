@@ -36,14 +36,14 @@ def summarize_video(url):
   #text summarization with openai turbo 3.5
   import openai
 
-  my_api_key = creds.openai_key
+  openai.api_key = creds.openai_key
 
   completion = openai.ChatCompletion.create(
      model="gpt-3.5-turbo",
-     messages = {"role":"user", "content": "can you summarize me this text and add punctuation when necessary? : {my_string} "}
+     messages = {"role":"user", "content": "can you summarize me this text and add punctuation when necessary?" + my_string }
   )
   
-  summary = completion.choices[0].message
+  summary = completion.choices[0].message.content
 
   return summary
 
